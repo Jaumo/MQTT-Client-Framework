@@ -175,7 +175,6 @@
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (assign, nonatomic) unsigned long long fileSize;
-@property (assign, nonatomic) unsigned long long fileSystemFreeSize;
 
 @end
 
@@ -503,11 +502,9 @@
                                               attributesOfFileSystemForPath:persistentStorePath
                                               error:&error];
         self.fileSize = [fileAttributes[NSFileSize] unsignedLongLongValue];
-        self.fileSystemFreeSize = [fileSystemAttributes[NSFileSystemFreeSize] unsignedLongLongValue];
     } else {
         self.fileSize = 0;
-        self.fileSystemFreeSize = 0;
     }
-    DDLogVerbose(@"[MQTTPersistence] sizes %llu/%llu", self.fileSize, self.fileSystemFreeSize);
+    DDLogVerbose(@"[MQTTPersistence] sizes %llu", self.fileSize);
 }
 @end
